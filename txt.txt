@@ -1,0 +1,13 @@
+fetch('linkdaapi')
+.then(response => response.json())
+.then(data => {
+    setRepositories(data);
+});
+
+
+outro modo
+
+axios.get('link')
+.then(response => {
+    setRepositories(response.data)
+})
