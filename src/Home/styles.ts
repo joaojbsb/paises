@@ -15,6 +15,7 @@ export const FilterRegionWrapper = styled.TouchableOpacity`
     background-color: #2b3743;
     width: 200px;
     height: 40px;
+    margin-bottom: 15px;
 `;
 
 export const TextFilterRegion = styled.Text`
@@ -24,7 +25,7 @@ export const TextFilterRegion = styled.Text`
     padding-right: 30px;
 `;
 
-export const ContainerPaises = styled.View`
+export const ContainerPaises = styled.TouchableOpacity`
     width: ${RFValue(220)}px;
     height: ${RFValue(240)}px;
     background-color: #2b3743;

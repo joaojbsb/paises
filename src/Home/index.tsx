@@ -5,8 +5,10 @@ import { Header } from '../components/Header';
 import { Search } from '../components/Search';
 import { Filter } from '../components/Filter';
 import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
-type PaisesProps = {
+
+export type PaisesProps = {
     name: {
         common: string;
         official: string;
@@ -17,6 +19,7 @@ type PaisesProps = {
     languages: string;
     area: string;
     population: string;
+    subregion: string;
     flags : {
         png: string
     }
@@ -29,9 +32,16 @@ type FilterProps = {
 };
 
 export function Home() {
+
     const [ paises, setPaises ] = useState<PaisesProps[]>([]);
     const [filter, setFilter ] = useState('ame');
     const [ modalVisible, setModalVisible ] = useState(false);
+
+    const navigation = useNavigation();
+
+    function handleOpenScreenDetails(common: string){
+        navigation.navigate('Details', {common});
+    }
 
     function modalClose(){
         setModalVisible(false)
@@ -65,7 +75,7 @@ export function Home() {
                 visible={modalVisible} 
                 transparent={true}
             >
-                <Filter onPress={modalClose} />
+                {/*<Filter onPress={modalClose} />*/}
             </Modal>
 
 
@@ -76,7 +86,7 @@ export function Home() {
                 renderItem={({ item }) => {
                     return (
                         <>
-                        <ContainerPaises>
+                        <ContainerPaises onPress={()=>handleOpenScreenDetails(item.name.common)} >
                             <Imagem source={{uri: item.flags.png}} />
                             <Text>{item.name.common}</Text>
                             <TextInformacion>População: {item.population}</TextInformacion>
